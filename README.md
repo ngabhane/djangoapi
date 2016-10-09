@@ -19,4 +19,9 @@ There are 3 options for popularity99 and imdb_score
 
 You can enter comma seperated values for "genre"
 eg., "?genre=Drama"
-	 "?genre=Drama,Crime"
+	 "?genre=Drama,Crime" => Output are the movies containing genre as either Drama or Crime or both
+
+Sample url containing multiple parameters: http://52.66.21.141:8000/movies?name=King%20Kong&director=Merian&popularity99%3E70&genre=adventure&imdb_score%3E7
+
+The query "?name=king" results all the movies whose name contains "king". From our database it will give 2 movies 'King Kong' and 'The Lion King'.
+Same thing valid for other parameters too.

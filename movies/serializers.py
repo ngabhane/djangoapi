@@ -6,4 +6,4 @@ class MovieSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Movie
 		field = '__all__'
-		# field = ("")
+		# field = ("name")
