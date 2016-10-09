@@ -1,6 +1,3 @@
-# djangoapi
-Search movies via api. Query set includes "name, popularity99, director, imdb_score, genre" 
-
 This is an attempt to create a RESTful api to search for movies by using following search parameters:
 
 1. name
@@ -20,6 +17,6 @@ There are 3 options for popularity99 and imdb_score
 2. ">"	=> Greter than(exclude given number) : "?popularity99>85"
 3. "<" 	=> Less than(exclude given number) : "?popularity99<85"
 
-You can comma seperated values for "genre"
+You can enter comma seperated values for "genre"
 eg., "?genre=Drama"
 	 "?genre=Drama,Crime"
