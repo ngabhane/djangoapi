@@ -52,17 +52,18 @@ class MovieList(APIView):
 
 		if name is not None:
 			# queryset = queryset.filter(name=name,director=director)
-			queryset = queryset.filter(name__contains=name)
+			queryset = queryset.filter(name__contains=name.strip())
 		if director is not None:
-			queryset = queryset.filter(director__contains=director)
+			queryset = queryset.filter(director__contains=director.strip())
 		if popularity is not None:
-			queryset = queryset.filter(popularity99=popularity)
+			queryset = queryset.filter(popularity99=popularity.strip())
 		if imdb is not None:
-			queryset = queryset.filter(imdb=imdb)
+			queryset = queryset.filter(imdb_score=imdb.strip())
 		# if genre is not None:
 		# 	for gen in genre:
 		# 		queryset = queryset.filter(genre__contains=gen)
 
+		print genre,imdb,request.query_params
 		if genre is not None:
 			try:
 				genre = genre.split(',')
@@ -70,9 +71,11 @@ class MovieList(APIView):
 				genre = list(genre)
 			genre_len = len(genre)
 			
+			for i in xrange(genre_len):
+				genre[i] = genre[i].strip()
+
 			if genre_len == 1:
 				queryset = queryset.filter(genre__contains=genre[0])
-			elif genre_len == 2:
 				queryset = queryset.filter(Q(genre__contains=genre[0])|Q(genre__contains=genre[1]))
 			elif genre_len == 3:
 				queryset = queryset.filter(Q(genre__contains=genre[0])|Q(genre__contains=genre[1])|Q(genre__contains=genre[2]))
@@ -88,11 +91,11 @@ class MovieList(APIView):
 			for entry in q:
 				try:
 					k = entry.split('<')
-					comparator[k[0]] = [k[1],'less']
+					comparator[k[0].strip()] = [k[1].strip(),'less'.strip()]
 				except:
 					try:
 						k = entry.split('>')
-						comparator[k[0]] = [k[1],'greater']
+						comparator[k[0].strip()] = [k[1].strip(),'greater'.strip()]
 					except:
 						pass
 		# print comparator
